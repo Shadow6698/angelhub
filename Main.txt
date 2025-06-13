@@ -1,0 +1,190 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local version = "2.0"
+
+local Window = Fluent:CreateWindow({
+    Title = "Angels hub " .. version,
+    SubTitle = "by nightmare",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark",
+    Visible = true,
+})
+
+local Tabs = {
+    Creditos = Window:AddTab({ Title = "Créditos", Icon = "heart" }),
+    Scripts = Window:AddTab({ Title = "Scripts", Icon = "code" }),
+    DeadRealls = Window:AddTab({ Title = "Dead Realls [Trilhos Mortos]", Icon = "skull" }),
+    Comandos = Window:AddTab({ Title = "Scripts de Comandos", Icon = "terminal" }),
+    Outros = Window:AddTab({ Title = "Outros", Icon = "grid" }),
+    Brookhaven = Window:AddTab({ Title = "Brookhaven", Icon = "home" })
+}
+
+Tabs.Creditos:AddParagraph({
+    Title = "Créditos",
+    Content = "Script feito por:\nNightmare e Julia"
+})
+
+-------------------------------------
+-- ✅ Aba Scripts com Scroll
+-------------------------------------
+
+local SectionScripts = Tabs.Scripts:AddSection("Todos os Scripts")
+
+local scripts = {
+    {"Fê Emotes", "https://scriptblox.com/raw/Brookhaven-RP-all-emotes-6849"},
+    {"Ghost Hub", "https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub"},
+    {"Infinite Yield", "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"},
+    {"Kill Players", "https://raw.githubusercontent.com/Shadow6698/Kill/main/main.txt"},
+    {"Pesquisar Scripts", "https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/main/ScriptSearcher"},
+    {"R4D", "https://raw.githubusercontent.com/M1ZZ001/BrookhavenR4D/main/Brookhaven%20R4D%20Script"},
+    {"Rael Hub", "https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/main.txt"},
+    {"Save Servers", "https://raw.githubusercontent.com/Shadow6698/Sabe-servers/main/Main.txt"},
+    {"Nameless Admin", "https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"},
+    {"Sander X", "https://raw.githubusercontent.com/kigredns/SanderXV4.2.2/refs/heads/main/New.lua"},
+    {"System Broken", "https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"},
+    {"View Itens", "https://raw.githubusercontent.com/Shadow6698/View-itens/main/main.txt"},
+    {"View Players", "https://raw.githubusercontent.com/Shadow6698/View/main/main.txt"},
+    {"Void", "https://raw.githubusercontent.com/Shadow6698/Void-fe/main/main.txt"},
+    {"Portal Gun", "https://raw.githubusercontent.com/Shadow6698/Portal-gun-/main/Main.txt"},
+    {"aimemotes", "https://raw.githubusercontent.com/Shadow6698/Lockemotes/main/Main.txt"},
+    {"Tiger Hub", "https://raw.githubusercontent.com/balintTheDevX/Tiger-X-V3/main/Tiger%20X%20V3.5%20Fixed"},
+    {"Aimbot", "https://pastebin.com/raw/qtZt0Nzb"},
+    {"Hub Universal", "https://raw.githubusercontent.com/scripthubekitten/SCRIPTHUBV3/main/SCRIPTHUBV3"},
+    {"Salvatore", "https://raw.githubusercontent.com/H20CalibreYT/Salvatore/main/loader.lua"},
+    {"Draw FE", "https://raw.githubusercontent.com/Affexter/Programs/refs/heads/main/scripts/tooldrawFE.lua"},
+    {"Multiplicar Tools", "https://raw.githubusercontent.com/kigredns/NeonDuplicator/refs/heads/main/Script.lua"},
+    {"Chaos Hub", "https://raw.githubusercontent.com/Luscaa22/Calabocaa/refs/heads/main/ChaosHub"},
+    {"Rebobination", "https://raw.githubusercontent.com/Shadow6698/rebobination/main/Main.txt"},
+}
+
+for _, script in ipairs(scripts) do
+    SectionScripts:AddButton({
+        Title = script[1],
+        Description = "Clique para executar",
+        Callback = function()
+            loadstring(game:HttpGet(script[2]))()
+        end
+    })
+end
+
+-------------------------------------
+-- ✅ Aba Comandos com Scroll
+-------------------------------------
+
+local SectionComandos = Tabs.Comandos:AddSection("Painéis Admin")
+
+local comandos = {
+    {"Nameless Admin", "https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"},
+    {"Infinite Yield", "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"},
+    {"Reviz Admin", "https://pastebin.com/raw/Caniwq2N"},
+    {"CMD-X", "https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source"},
+    {"Fates Admin", "https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"},
+    {"Angel Cmds", "https://raw.githubusercontent.com/Shadow6698/angel-commands/main/Main.txt"},
+}
+
+for _, script in ipairs(comandos) do
+    SectionComandos:AddButton({
+        Title = script[1],
+        Description = "Painel/Admin de comandos",
+        Callback = function()
+            loadstring(game:HttpGet(script[2]))()
+        end
+    })
+end
+
+-------------------------------------
+-- ✅ Aba Dead Realls com Scroll
+-------------------------------------
+
+local SectionDead = Tabs.DeadRealls:AddSection("Dead Realls Hubs")
+
+local deadRealls = {
+    {"Hub 1", "https://getnative.cc/script/loader"},
+    {"Hub 2 (Than Hub)", "https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"},
+    {"Hub 3 (Bond Stealer)", "https://raw.githubusercontent.com/DonjoScripts/Public-Scripts/refs/heads/Slap-Battles/TheFastestBondStealer.lua"},
+    {"Hub 4 (Tbao Hub)", "https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"},
+    {"Hub 5 (FernHub)", "https://raw.githubusercontent.com/Mrpopcatfrombupge/FernHub/refs/heads/main/DeadRailsFarm"},
+}
+
+for _, script in ipairs(deadRealls) do
+    SectionDead:AddButton({
+        Title = script[1],
+        Description = "Clique para executar",
+        Callback = function()
+            loadstring(game:HttpGet(script[2]))()
+        end
+    })
+end
+
+-------------------------------------
+-- ✅ Aba Outros com Scroll
+-------------------------------------
+
+local SectionOutros = Tabs.Outros:AddSection("Outros Scripts")
+
+local outros = {
+    {"Angel Executor", "https://raw.githubusercontent.com/Shadow6698/Executor-script/main/Main.txt"},
+    {"Sky Hub", "https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"},
+    {"Arma de Portais", "https://raw.githubusercontent.com/Shadow6698/Arma-de-portais-/main/Main.txt"},
+    {"Buraco Negro Tool", "https://rawscripts.net/raw/Natural-Disaster-Survival-Blackhole-Tool-Control-Unanc*d-Parts-27791"},
+    {"Rejoin", "local", "Reconectar ao servidor atual"},
+    {"Server Hop", "local", "Entrar em outro servidor aleatório"},
+    {"Speed", "https://raw.githubusercontent.com/Shadow6698/Speed-2/main/Main.txt"},
+    {"Dia Infinito", "https://raw.githubusercontent.com/Shadow6698/time-lock/main/README.md"},
+    {"c00lkid Hub", "https://raw.githubusercontent.com/Shadow6698/COOLKIDHUB/main/Main.txt"},
+}
+
+for _, script in ipairs(outros) do
+    SectionOutros:AddButton({
+        Title = script[1],
+        Description = script[3] or "Clique para executar",
+        Callback = function()
+            if script[2] == "local" then
+                if script[1] == "Rejoin" then
+                    game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
+                elseif script[1] == "Server Hop" then
+                    local TeleportService = game:GetService("TeleportService")
+                    local HttpService = game:GetService("HttpService")
+                    local PlaceId = game.PlaceId
+
+                    local servers = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..PlaceId.."/servers/Public?sortOrder=Desc&limit=100")).data
+                    for _, server in pairs(servers) do
+                        if server.playing < server.maxPlayers then
+                            TeleportService:TeleportToPlaceInstance(PlaceId, server.id)
+                            break
+                        end
+                    end
+                end
+            else
+                loadstring(game:HttpGet(script[2]))()
+            end
+        end
+    })
+end
+
+-------------------------------------
+-- ✅ Aba Brookhaven com Scroll
+-------------------------------------
+
+local SectionBrookhaven = Tabs.Brookhaven:AddSection("Scripts Brookhaven")
+
+local brookhavenScripts = {
+    {"Gumball Hub", "https://raw.githubusercontent.com/JaozinScripts/Gumball-Hub/refs/heads/main/GumballHubRetorn2.1.1.1.lua"},
+    {"Sander X", "https://raw.githubusercontent.com/sXPiterXs1111/Sanderxv3.30/main/sanderx3.30"},
+    {"Chaos Hub", "https://raw.githubusercontent.com/Luscaa22/Calabocaa/refs/heads/main/ChaosHub"},
+    {"Rael Hub", "https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/main.txt"},
+    {"Shadow Hub", "https://raw.githubusercontent.com/realgengar/scripts/refs/heads/main/Gui%20Version.Lua"},
+    {"Speed Wave", "https://rawscripts.net/raw/Brookhaven-RP-SPEED-WAVE-English-28849"},
+    {"Duplicator Carros", "https://raw.githubusercontent.com/kigredns/Flame-Object/refs/heads/main/script.lua"}
+}
+
+for _, script in ipairs(brookhavenScripts) do
+    SectionBrookhaven:AddButton({
+        Title = script[1],
+        Description = "Clique para executar",
+        Callback = function()
+            loadstring(game:HttpGet(script[2]))()
+        end
+    })
+end
