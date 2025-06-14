@@ -81,6 +81,7 @@ local comandos = {
     {"CMD-X", "https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source"},
     {"Fates Admin", "https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"},
     {"Angel Cmds", "https://raw.githubusercontent.com/Shadow6698/angel-commands/main/Main.txt"},
+    {"AntKick", "https://raw.githubusercontent.com/Shadow6698/antkick/main/Main.txt"},
 }
 
 for _, script in ipairs(comandos) do
@@ -92,6 +93,7 @@ for _, script in ipairs(comandos) do
         end
     })
 end
+
 
 -------------------------------------
 -- ✅ Aba Dead Realls com Scroll
