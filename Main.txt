@@ -51,7 +51,7 @@ local scripts = {
     {"Tiger Hub", "https://raw.githubusercontent.com/balintTheDevX/Tiger-X-V3/main/Tiger%20X%20V3.5%20Fixed"},
     {"Aimbot", "https://pastebin.com/raw/qtZt0Nzb"},
     {"Hub Universal", "https://raw.githubusercontent.com/scripthubekitten/SCRIPTHUBV3/main/SCRIPTHUBV3"},
-    {"Salvatore", "https://raw.githubusercontent.com/H20CalibreYT/Salvatore/main/loader.lua"},
+    {"Salvatore", "https://raw.githubusercontent.com/RFR-R1CH4RD/Loader/main/Salvatore.lua"}, -- Atualizado
     {"Draw FE", "https://raw.githubusercontent.com/Affexter/Programs/refs/heads/main/scripts/tooldrawFE.lua"},
     {"Multiplicar Tools", "https://raw.githubusercontent.com/kigredns/NeonDuplicator/refs/heads/main/Script.lua"},
     {"Chaos Hub", "https://raw.githubusercontent.com/Luscaa22/Calabocaa/refs/heads/main/ChaosHub"},
@@ -68,32 +68,6 @@ for _, script in ipairs(scripts) do
     })
 end
 
--------------------------------------
--- ✅ Aba Comandos com Scroll
--------------------------------------
-
-local SectionComandos = Tabs.Comandos:AddSection("Painéis Admin")
-
-local comandos = {
-    {"Nameless Admin", "https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"},
-    {"Infinite Yield", "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"},
-    {"Reviz Admin", "https://pastebin.com/raw/Caniwq2N"},
-    {"CMD-X", "https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source"},
-    {"Fates Admin", "https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"},
-    {"Angel Cmds", "https://raw.githubusercontent.com/Shadow6698/angel-commands/main/Main.txt"},
-    {"AntKick", "https://raw.githubusercontent.com/Shadow6698/antkick/main/Main.txt"},
-    {"Remove Players", "https://raw.githubusercontent.com/Shadow6698/removeplayers/main/Main.txt"},
-}
-
-for _, script in ipairs(comandos) do
-    SectionComandos:AddButton({
-        Title = script[1],
-        Description = "Painel/Admin de comandos",
-        Callback = function()
-            loadstring(game:HttpGet(script[2]))()
-        end
-    })
-end
 
 
 
