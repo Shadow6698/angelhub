@@ -81,6 +81,8 @@ local comandos = {
     {"CMD-X", "https://raw.githubusercontent.com/CMD-X/CMD-X/master/Source"},
     {"Fates Admin", "https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"},
     {"Angel Cmds", "https://raw.githubusercontent.com/Shadow6698/angel-commands/main/Main.txt"},
+    {"AntKick", "https://raw.githubusercontent.com/Shadow6698/antkick/main/Main.txt"},
+    {"Remove Players", "https://raw.githubusercontent.com/Shadow6698/removeplayers/main/Main.txt"},
 }
 
 for _, script in ipairs(comandos) do
@@ -128,19 +130,23 @@ local outros = {
     {"Sky Hub", "https://raw.githubusercontent.com/yofriendfromschool1/Sky-Hub/main/FE%20Trolling%20GUI.luau"},
     {"Arma de Portais", "https://raw.githubusercontent.com/Shadow6698/Arma-de-portais-/main/Main.txt"},
     {"Buraco Negro Tool", "https://rawscripts.net/raw/Natural-Disaster-Survival-Blackhole-Tool-Control-Unanc*d-Parts-27791"},
+    {"Gravity Gun", "https://scriptblox.com/raw/Universal-Script-Telekinesis-12332"},
     {"Rejoin", "local", "Reconectar ao servidor atual"},
     {"Server Hop", "local", "Entrar em outro servidor aleatório"},
     {"Speed", "https://raw.githubusercontent.com/Shadow6698/Speed-2/main/Main.txt"},
     {"Dia Infinito", "https://raw.githubusercontent.com/Shadow6698/time-lock/main/README.md"},
     {"c00lkid Hub", "https://raw.githubusercontent.com/Shadow6698/COOLKIDHUB/main/Main.txt"},
+    {"helpbiel", "https://raw.githubusercontent.com/Shadow6698/helpbiel/main/Main.txt"},
+    {"helpgeison", "https://raw.githubusercontent.com/Shadow6698/helpgeison/main/Main.txt"},
+    {"helpangel", "https://raw.githubusercontent.com/Shadow6698/helpangel/main/Main.txt"},
 }
 
 for _, script in ipairs(outros) do
-    SectionOutros:AddButton({
-        Title = script[1],
-        Description = script[3] or "Clique para executar",
-        Callback = function()
-            if script[2] == "local" then
+    if script[2] == "local" then
+        SectionOutros:AddButton({
+            Title = script[1],
+            Description = script[3] or "Clique para executar",
+            Callback = function()
                 if script[1] == "Rejoin" then
                     game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, game.Players.LocalPlayer)
                 elseif script[1] == "Server Hop" then
@@ -148,7 +154,7 @@ for _, script in ipairs(outros) do
                     local HttpService = game:GetService("HttpService")
                     local PlaceId = game.PlaceId
 
-                    local servers = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/"..PlaceId.."/servers/Public?sortOrder=Desc&limit=100")).data
+                    local servers = HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. PlaceId .. "/servers/Public?sortOrder=Desc&limit=100")).data
                     for _, server in pairs(servers) do
                         if server.playing < server.maxPlayers then
                             TeleportService:TeleportToPlaceInstance(PlaceId, server.id)
@@ -156,12 +162,19 @@ for _, script in ipairs(outros) do
                         end
                     end
                 end
-            else
+            end
+        })
+    else
+        SectionOutros:AddButton({
+            Title = script[1],
+            Description = script[3] or "Clique para executar",
+            Callback = function()
                 loadstring(game:HttpGet(script[2]))()
             end
-        end
-    })
+        })
+    end
 end
+
 
 -------------------------------------
 -- ✅ Aba Brookhaven com Scroll
