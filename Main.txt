@@ -138,11 +138,13 @@ local outros = {
     {"Speed", "https://raw.githubusercontent.com/Shadow6698/Speed-2/main/Main.txt"},
     {"Dia Infinito", "https://raw.githubusercontent.com/Shadow6698/time-lock/main/README.md"},
     {"c00lkid Hub", "https://raw.githubusercontent.com/Shadow6698/COOLKIDHUB/main/Main.txt"},
+    {"helpbiel", "https://raw.githubusercontent.com/Shadow6698/helpbiel/main/Main.txt"},
+    {"helpgeison", "https://raw.githubusercontent.com/Shadow6698/helpgeison/main/Main.txt"},
+    {"helpangel", "https://raw.githubusercontent.com/Shadow6698/helpangel/main/Main.txt"},
 }
 
 for _, script in ipairs(outros) do
     if script[2] == "local" then
-        -- Scripts locais, como Rejoin e Server Hop
         SectionOutros:AddButton({
             Title = script[1],
             Description = script[3] or "Clique para executar",
