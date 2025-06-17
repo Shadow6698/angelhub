@@ -5,7 +5,7 @@ local Window = Fluent:CreateWindow({
     Title = "Angels hub " .. version,
     SubTitle = "by nightmare",
     TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
+    Size = UDim2.fromOffset(580, 520), -- aumentei altura pra caber scroll maior
     Acrylic = true,
     Theme = "Dark",
     Visible = true,
@@ -26,10 +26,10 @@ Tabs.Creditos:AddParagraph({
 })
 
 -------------------------------------
--- ✅ Aba Scripts com Scroll
+-- ✅ Aba Scripts com Scroll maior
 -------------------------------------
 
-local SectionScripts = Tabs.Scripts:AddSection("Todos os Scripts")
+local SectionScripts = Tabs.Scripts:AddSection("Todos os Scripts", { MaxHeight = 420 })
 
 local scripts = {
     {"Fê Emotes", "https://scriptblox.com/raw/Brookhaven-RP-all-emotes-6849"},
@@ -51,7 +51,7 @@ local scripts = {
     {"Tiger Hub", "https://raw.githubusercontent.com/balintTheDevX/Tiger-X-V3/main/Tiger%20X%20V3.5%20Fixed"},
     {"Aimbot", "https://pastebin.com/raw/qtZt0Nzb"},
     {"Hub Universal", "https://raw.githubusercontent.com/scripthubekitten/SCRIPTHUBV3/main/SCRIPTHUBV3"},
-    {"Salvatore", "https://raw.githubusercontent.com/RFR-R1CH4RD/Loader/main/Salvatore.lua"}, -- Atualizado
+    {"Salvatore", "https://raw.githubusercontent.com/RFR-R1CH4RD/Loader/main/Salvatore.lua"},
     {"Draw FE", "https://raw.githubusercontent.com/Affexter/Programs/refs/heads/main/scripts/tooldrawFE.lua"},
     {"Multiplicar Tools", "https://raw.githubusercontent.com/kigredns/NeonDuplicator/refs/heads/main/Script.lua"},
     {"Chaos Hub", "https://raw.githubusercontent.com/Luscaa22/Calabocaa/refs/heads/main/ChaosHub"},
@@ -69,10 +69,10 @@ for _, script in ipairs(scripts) do
 end
 
 -------------------------------------
--- ✅ Aba Comandos com Scroll
+-- ✅ Aba Comandos com Scroll maior
 -------------------------------------
 
-local SectionComandos = Tabs.Comandos:AddSection("Painéis Admin")
+local SectionComandos = Tabs.Comandos:AddSection("Painéis Admin", { MaxHeight = 420 })
 
 local comandos = {
     {"Nameless Admin", "https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua"},
@@ -86,15 +86,16 @@ local comandos = {
     {"Invocar Gênio", "https://raw.githubusercontent.com/Shadow6698/spawngenio/main/Main.txt"},
 }
 
-for _, script in ipairs(comandos) do
+for _, comando in ipairs(comandos) do
     SectionComandos:AddButton({
-        Title = script[1],
-        Description = "Painel/Admin de comandos",
+        Title = comando[1],
+        Description = "Clique para executar",
         Callback = function()
-            loadstring(game:HttpGet(script[2]))()
+            loadstring(game:HttpGet(comando[2]))()
         end
     })
 end
+
 
 -------------------------------------
 -- ✅ Aba Dead Realls com Scroll
