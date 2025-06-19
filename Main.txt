@@ -11,7 +11,7 @@ local TabAdmin = Window:Tab({ Text = "Admin" })
 local TabDeadRails = Window:Tab({ Text = "Dead Rails" })
 local TabOutros = Window:Tab({ Text = "Outros" })
 local TabBrookhaven = Window:Tab({ Text = "Brookhaven" })
-local TabAlicia = Window:Tab({ Text = "Alicia" }) -- Nova aba adicionada
+local TabAlicia = Window:Tab({ Text = "Scripts da Alicia" }) -- Nova aba adicionada
 
 -- Seções
 local SectionScripts = TabScripts:Section({ Text = "Principais Scripts" })
@@ -19,7 +19,7 @@ local SectionAdmin = TabAdmin:Section({ Text = "Comandos Admin" })
 local SectionDeadRails = TabDeadRails:Section({ Text = "Dead Rails" })
 local SectionOutros = TabOutros:Section({ Text = "Outros Scripts" })
 local SectionBrookhaven = TabBrookhaven:Section({ Text = "Scripts Brookhaven" })
-local SectionAlicia = TabAlicia:Section({ Text = "Scripts Especiais da Alicia" }) -- Seção da nova aba
+local SectionAlicia = TabAlicia:Section({ Text = "Scripts da Alicia" }) -- Seção da nova aba
 
 -- Função para adicionar botões que executam scripts
 local function AddScriptButtons(section, scripts)
