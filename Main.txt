@@ -8,7 +8,7 @@ local Window = Library:Window({
 -- Abas
 local TabScripts = Window:Tab({ Text = "Scripts" })
 local TabAdmin = Window:Tab({ Text = "Admin" })
-local TabDeadRails = Window:Tab({ Text = "Dead Rails" })
+local TabScriptsNovos = Window:Tab({ Text = "Scripts Novos" }) -- Renomeado de Dead Rails
 local TabOutros = Window:Tab({ Text = "Outros" })
 local TabBrookhaven = Window:Tab({ Text = "Brookhaven" })
 local TabAlicia = Window:Tab({ Text = "Scripts da Alicia" }) -- Nova aba adicionada
@@ -16,7 +16,7 @@ local TabAlicia = Window:Tab({ Text = "Scripts da Alicia" }) -- Nova aba adicion
 -- Seções
 local SectionScripts = TabScripts:Section({ Text = "Principais Scripts" })
 local SectionAdmin = TabAdmin:Section({ Text = "Comandos Admin" })
-local SectionDeadRails = TabDeadRails:Section({ Text = "Dead Rails" })
+local SectionScriptsNovos = TabScriptsNovos:Section({ Text = "Scripts Novos" }) -- Renomeado
 local SectionOutros = TabOutros:Section({ Text = "Outros Scripts" })
 local SectionBrookhaven = TabBrookhaven:Section({ Text = "Scripts Brookhaven" })
 local SectionAlicia = TabAlicia:Section({ Text = "Scripts da Alicia" }) -- Seção da nova aba
@@ -83,12 +83,9 @@ local comandos = {
     {"Invocar Gênio", "https://raw.githubusercontent.com/Shadow6698/spawngenio/main/Main.txt"},
 }
 
-local deadRealls = {
-    {"Hub 1", "https://getnative.cc/script/loader"},
-    {"Hub 2 (Than Hub)", "https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"},
-    {"Hub 3 (Bond Stealer)", "https://raw.githubusercontent.com/DonjoScripts/Public-Scripts/refs/heads/Slap-Battles/TheFastestBondStealer.lua"},
-    {"Hub 4 (Tbao Hub)", "https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"},
-    {"Hub 5 (FernHub)", "https://raw.githubusercontent.com/Mrpopcatfrombupge/FernHub/refs/heads/main/DeadRailsFarm"},
+-- Aqui a mudança principal: deadRealls virou scriptsNovos, só com o hub utilidades
+local scriptsNovos = {
+    {"Hub de Utilidades", "https://raw.githubusercontent.com/Shadow6698/utilidades/main/Main.txt"},
 }
 
 local outros = {
@@ -103,7 +100,7 @@ local outros = {
     {"Dia Infinito", "https://raw.githubusercontent.com/Shadow6698/time-lock/main/README.md"},
     {"c00lkid Hub", "https://raw.githubusercontent.com/Shadow6698/COOLKIDHUB/main/Main.txt"},
     {"helpbiel", "https://raw.githubusercontent.com/Shadow6698/helpbiel/main/Main.txt"},
-    {"helpgeison", "https://raw.githubusercontent.com/Shadow6698/helpgeison/main/Main.txt"},
+    {"helpgeison", "https://raw.githubusercontent.com/Shadow6698/helpgeison/main.txt"},
     {"helpangel", "https://raw.githubusercontent.com/Shadow6698/helpangel/main/Main.txt"},
 }
 
@@ -118,7 +115,6 @@ local brookhavenScripts = {
     {"Coquette Hub", "https://rawscripts.net/raw/Brookhaven-RP-Coquette-Hub-41921"},
 }
 
-
 local aliciaScripts = {
     {"Ioio da Ladybug", "https://raw.githubusercontent.com/Shadow6698/ladybug/main/Main.txt"},
 }
@@ -126,7 +122,7 @@ local aliciaScripts = {
 -- Adicionando os botões nas seções
 AddScriptButtons(SectionScripts, scripts)
 AddScriptButtons(SectionAdmin, comandos)
-AddScriptButtons(SectionDeadRails, deadRealls)
+AddScriptButtons(SectionScriptsNovos, scriptsNovos) -- Atualizado aqui
 AddScriptButtons(SectionOutros, outros)
 AddScriptButtons(SectionBrookhaven, brookhavenScripts)
 AddScriptButtons(SectionAlicia, aliciaScripts)
