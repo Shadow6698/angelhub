@@ -2,7 +2,7 @@ Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Rain-Design
 Library.Theme = "Dark"
 
 local Window = Library:Window({
-   Text = "Angel Hub V3"
+   Text = "Angel Hub"
 })
 
 -- Abas
