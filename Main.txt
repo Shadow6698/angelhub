@@ -21,22 +21,31 @@ local SectionOutros = TabOutros:Section({ Text = "Outros Scripts" })
 local SectionBrookhaven = TabBrookhaven:Section({ Text = "Scripts Brookhaven" })
 local SectionAlicia = TabAlicia:Section({ Text = "Scripts da Alicia" }) -- Seção da nova aba
 
--- Função para adicionar botões que executam scripts
+-- Função para adicionar botões que executam scripts ou combos
 local function AddScriptButtons(section, scripts)
     for _, script in ipairs(scripts) do
-        local name, url = script[1], script[2]
+        local name, callback = script[1], script[2]
         section:Button({
             Text = name,
             Callback = function()
-                if url == "local" then
-                    warn("Script "..name.." é local, implemente você mesmo.")
-                else
-                    local success, err = pcall(function()
-                        loadstring(game:HttpGet(url))()
-                    end)
+                if type(callback) == "function" then
+                    local success, err = pcall(callback)
                     if not success then
                         warn("Erro ao executar "..name..": "..err)
                     end
+                elseif type(callback) == "string" then
+                    if callback == "local" then
+                        warn("Script "..name.." é local, implemente você mesmo.")
+                    else
+                        local success, err = pcall(function()
+                            loadstring(game:HttpGet(callback))()
+                        end)
+                        if not success then
+                            warn("Erro ao executar "..name..": "..err)
+                        end
+                    end
+                else
+                    warn("Tipo inválido para script: "..tostring(name))
                 end
             end
         })
@@ -44,6 +53,7 @@ local function AddScriptButtons(section, scripts)
 end
 
 -- Listas de scripts
+
 local scripts = {
     {"Fê Emotes", "https://scriptblox.com/raw/Brookhaven-RP-all-emotes-6849"},
     {"Ghost Hub", "https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub"},
@@ -83,8 +93,30 @@ local comandos = {
     {"Invocar Gênio", "https://raw.githubusercontent.com/Shadow6698/spawngenio/main/Main.txt"},
 }
 
--- Aqui a mudança principal: deadRealls virou scriptsNovos, só com o hub utilidades
+-- Combos em scriptsNovos aceitando funções para combos
 local scriptsNovos = {
+    {
+        "Combo Universal",
+        function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+        end
+    },
+    {
+        "Combo de Brookhaven",
+        function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/JaozinScripts/Gumball-Hub/refs/heads/main/GumballHubRetorn2.1.1.1.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/main.txt"))()
+            loadstring(game:HttpGet("https://scriptblox.com/raw/Brookhaven-RP-all-emotes-6849"))()
+        end
+    },
+    {
+        "Combo de Vazar KK",
+        function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Shadow6698/Void-fe/main/main.txt"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Shadow6698/Speed-2/main/Main.txt"))()
+        end
+    },
     {"Hub de Utilidades", "https://raw.githubusercontent.com/Shadow6698/utilidades/main/Main.txt"},
 }
 
@@ -122,7 +154,7 @@ local aliciaScripts = {
 -- Adicionando os botões nas seções
 AddScriptButtons(SectionScripts, scripts)
 AddScriptButtons(SectionAdmin, comandos)
-AddScriptButtons(SectionScriptsNovos, scriptsNovos) -- Atualizado aqui
+AddScriptButtons(SectionScriptsNovos, scriptsNovos)
 AddScriptButtons(SectionOutros, outros)
 AddScriptButtons(SectionBrookhaven, brookhavenScripts)
 AddScriptButtons(SectionAlicia, aliciaScripts)
