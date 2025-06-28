@@ -126,8 +126,15 @@ local scriptsNovos = {
         function()
             loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fe-ball-rolL-9835"))()
         end
+    },
+    {
+        "Modo Gigante",
+        function()
+            loadstring(game:HttpGet("https://rawscripts.net/raw/Brookhaven-RP-FE-BIG-AVATAR-43381"))()
+        end
     }
 }
+
 
 local outros = {
     {"Angel Executor", "https://raw.githubusercontent.com/Shadow6698/Executor-script/main/Main.txt"},
