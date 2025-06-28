@@ -93,7 +93,7 @@ local comandos = {
     {"Invocar Gênio", "https://raw.githubusercontent.com/Shadow6698/spawngenio/main/Main.txt"},
 }
 
--- Combos em scriptsNovos aceitando funções para combos
+-- 📦 Combos em scriptsNovos aceitando funções para combos
 local scriptsNovos = {
     {
         "Combo Universal",
@@ -117,7 +117,16 @@ local scriptsNovos = {
             loadstring(game:HttpGet("https://raw.githubusercontent.com/Shadow6698/Speed-2/main/Main.txt"))()
         end
     },
-    {"Hub de Utilidades", "https://raw.githubusercontent.com/Shadow6698/utilidades/main/Main.txt"},
+    {
+        "Hub de Utilidades",
+        "https://raw.githubusercontent.com/Shadow6698/utilidades/main/Main.txt"
+    },
+    {
+        "Virar Bola KKJ",
+        function()
+            loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fe-ball-rolL-9835"))()
+        end
+    }
 }
 
 local outros = {
