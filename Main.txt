@@ -15,13 +15,96 @@ LocalPlayer.CharacterAdded:Connect(function(char)
     character = char
 end)
 
-local function FindPlayer(name)
-    name = name:lower()
-    for _, player in ipairs(Players:GetPlayers()) do
-        if player.Name:lower():find(name) or player.DisplayName:lower():find(name) then
-            return player
+local teleportAliases = {
+    salao = Vector3.new(-76, 4, -123),
+    sofa = Vector3.new(-82, 22, -128),
+    doceria = Vector3.new(-125, 6, -120),
+    jogos = Vector3.new(-172, 1, -126),
+    delegacia = Vector3.new(-121, 4, 31),
+    hospital = Vector3.new(-293, 4, 40),
+    banco = Vector3.new(-358, 25, -143),
+    bombeiros = Vector3.new(-469, 6, -122),
+    cemiterio = Vector3.new(-486, 7, 56),
+    escola = Vector3.new(-315, 6, 211),
+    creche = Vector3.new(-157, 4, 125),
+    caixas = Vector3.new(-162, 4, 268),
+    lanches = Vector3.new(-169, 20, 291),
+    livraria = Vector3.new(-129, 4, 259),
+    celulares = Vector3.new(-127, 21, 253),
+    coffes = Vector3.new(-96, 5, 250),
+    veterinario = Vector3.new(-100, 22, 262),
+    dentista = Vector3.new(-53, 20, 268),
+    banco2 = Vector3.new(3, 4, 257),
+    hotel = Vector3.new(199, 2, 182),
+    hamburgueria = Vector3.new(156, 8, 39),
+    aeroporto = Vector3.new(317, 7, 40),
+    shopping = Vector3.new(165, 5, -158),
+    ap1 = Vector3.new(-35, 20, -126),
+    ap2 = Vector3.new(-34, 37, -136),
+    igreja = Vector3.new(-64, 37, -192),
+    praia1 = Vector3.new(70, 8, -1433),
+    praia2 = Vector3.new(-218, 1, 760),
+    praia3 = Vector3.new(15, 4, 1460),
+    abandonada = Vector3.new(1044, 8, 54),
+    maquinas = Vector3.new(235, 4, 813),
+    iate = Vector3.new(-125, 33, 856),
+    cabana = Vector3.new(-249, 6, 1078),
+    drones = Vector3.new(-680, 252, 762),
+    fazenda1 = Vector3.new(-851, 6, -57),
+    fazenda2 = Vector3.new(-863, 6, -375),
+    ["praça"] = Vector3.new(-13, 6, -17),
+    montanha = Vector3.new(-580, 1, 1026),
+    posto = Vector3.new(133, 2, -338),
+    loja = Vector3.new(-39, 2, 255),
+}
+
+local scriptsURLs = {
+    speedsupreme = "https://raw.githubusercontent.com/Shadow6698/Speed-2/main/Main.txt",
+    coolkid = "https://raw.githubusercontent.com/Shadow6698/COOLKIDHUB/main/Main.txt",
+    portalgun = "https://raw.githubusercontent.com/Shadow6698/Portal-gun-/main/Main.txt",
+    void = "https://raw.githubusercontent.com/Shadow6698/Void-fe/main/main.txt",
+    gravitygun = "https://scriptblox.com/raw/Universal-Script-Telekinesis-12332",
+    angelhub = "https://raw.githubusercontent.com/Shadow6698/angelhub/main/Main.txt",
+    lanterna = "https://rawscripts.net/raw/Universal-Script-Flashlight-Script-40768",
+    cmd1 = "https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua",
+    hub1 = "https://raw.githubusercontent.com/Venom-devX/ChaosHub/main/loader.lua",
+    emotes = "https://scriptblox.com/raw/Brookhaven-RP-all-emotes-6849",
+    gigante = "https://rawscripts.net/raw/Brookhaven-RP-FE-BIG-AVATAR-43381",
+}
+
+local loadedScripts = {}
+
+for key, url in pairs(scriptsURLs) do
+    coroutine.wrap(function()
+        local success, code = pcall(function()
+            return game:HttpGet(url)
+        end)
+        if success and code then
+            local func = loadstring(code)
+            loadedScripts[key] = func
+        else
+            warn("Falha ao carregar "..key.." -> "..tostring(code))
+        end
+    end)()
+end
+
+local function enableXray()
+    xrayParts = {}
+    for _, v in pairs(workspace:GetDescendants()) do
+        if v:IsA("BasePart") and v.Transparency < 1 and v.CanCollide then
+            table.insert(xrayParts, {part = v, transparency = v.Transparency})
+            v.Transparency = 0.7
         end
     end
+end
+
+local function disableXray()
+    for _, v in pairs(xrayParts) do
+        if v.part and v.part.Parent then
+            v.part.Transparency = v.transparency
+        end
+    end
+    xrayParts = {}
 end
 
 local function OpenCmdGui()
@@ -69,7 +152,7 @@ local function OpenCmdGui()
     scroll.ZIndex = 1
 
     local label = Instance.new("TextLabel", scroll)
-    label.Size = UDim2.new(1, -10, 0, 1900)
+    label.Size = UDim2.new(1, -10, 0, 1800)
     label.Position = UDim2.new(0, 5, 0, 0)
     label.BackgroundTransparency = 1
     label.TextColor3 = Color3.new(1, 1, 1)
@@ -102,7 +185,7 @@ local function OpenCmdGui()
 ;cmd1 → Nameless Admin
 ;hub1 → Chaos Hub
 ;emotes → Emotes Brookhaven RP
-;gigante → Avatar gigante
+;gigante → Ativar personagem gigante
 ;cmds → Abrir este GUI
 
 🏠 TELEPORTS (apelidos)
@@ -147,185 +230,131 @@ local function OpenCmdGui()
 ;tp posto
 ;tp loja
 ]]
-end
 
-OpenCmdGui()
-
-local teleportAliases = {
-    salao = Vector3.new(-76, 4, -123),
-    sofa = Vector3.new(-82, 22, -128),
-    doceria = Vector3.new(-125, 6, -120),
-    jogos = Vector3.new(-172, 1, -126),
-    delegacia = Vector3.new(-121, 4, 31),
-    hospital = Vector3.new(-293, 4, 40),
-    banco = Vector3.new(-358, 25, -143),
-    bombeiros = Vector3.new(-469, 6, -122),
-    cemiterio = Vector3.new(-486, 7, 56),
-    escola = Vector3.new(-315, 6, 211),
-    creche = Vector3.new(-157, 4, 125),
-    caixas = Vector3.new(-162, 4, 268),
-    lanches = Vector3.new(-169, 20, 291),
-    livraria = Vector3.new(-129, 4, 259),
-    celulares = Vector3.new(-127, 21, 253),
-    coffes = Vector3.new(-96, 5, 250),
-    veterinario = Vector3.new(-100, 22, 262),
-    dentista = Vector3.new(-53, 20, 268),
-    banco2 = Vector3.new(3, 4, 257),
-    hotel = Vector3.new(199, 2, 182),
-    hamburgueria = Vector3.new(156, 8, 39),
-    aeroporto = Vector3.new(317, 7, 40),
-    shopping = Vector3.new(165, 5, -158),
-    ap1 = Vector3.new(-35, 20, -126),
-    ap2 = Vector3.new(-34, 37, -136),
-    igreja = Vector3.new(-64, 37, -192),
-    praia1 = Vector3.new(70, 8, -1433),
-    praia2 = Vector3.new(-218, 1, 760),
-    praia3 = Vector3.new(15, 4, 1460),
-    abandonada = Vector3.new(1044, 8, 54),
-    maquinas = Vector3.new(235, 4, 813),
-    iate = Vector3.new(-125, 33, 856),
-    cabana = Vector3.new(-249, 6, 1078),
-    drones = Vector3.new(-680, 252, 762),
-    fazenda1 = Vector3.new(-851, 6, -57),
-    fazenda2 = Vector3.new(-863, 6, -375),
-    ["praça"] = Vector3.new(-13, 6, -17),
-    montanha = Vector3.new(-580, 1, 1026),
-    posto = Vector3.new(133, 2, -338),
-    loja = Vector3.new(-39, 2, 255),
-}
-
-local scriptsCache = {}
-local function LoadScript(url)
-    if scriptsCache[url] then return scriptsCache[url] end
-    local s, err = pcall(function()
-        local code = game:HttpGet(url)
-        local func = loadstring(code)
-        scriptsCache[url] = func
+    -- Fecha o GUI após 5 segundos automaticamente
+    delay(5, function()
+        if gui and gui.Parent then
+            gui:Destroy()
+        end
     end)
-    if not s then warn("Erro ao carregar script: "..err) end
-    return scriptsCache[url]
 end
 
-local function enableXray()
-    xrayParts = {}
-    for _, v in pairs(workspace:GetDescendants()) do
-        if v:IsA("BasePart") and v.Transparency < 1 and v.CanCollide then
-            table.insert(xrayParts, {part = v, transparency = v.Transparency})
-            v.Transparency = 0.7
-        end
-    end
-end
+OpenCmdGui() -- Abre o GUI ao iniciar o script
 
-local function disableXray()
-    for _, v in pairs(xrayParts) do
-        if v.part and v.part.Parent then
-            v.part.Transparency = v.transparency
+local function FindPlayer(name)
+    name = name:lower()
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player.Name:lower():find(name) or player.DisplayName:lower():find(name) then
+            return player
         end
     end
-    xrayParts = {}
 end
 
 LocalPlayer.Chatted:Connect(function(msg)
     if msg:sub(1, #prefix):lower() ~= prefix then return end
-    local args = msg:sub(#prefix + 1):lower():split(" ")
-    local cmd = args[1]
+    local args = msg:sub(#prefix + 1):split(" ")
+    local cmd = args[1]:lower()
+
     if not character or not character.Parent then return end
     local humanoid = character:FindFirstChildOfClass("Humanoid")
-    if not humanoid then return end
+    local hrp = character:FindFirstChild("HumanoidRootPart")
+    if not humanoid or not hrp then return end
 
-    if cmd == "tp" and args[2] then
-        local place = args[2]
-        local pos = teleportAliases[place]
-        if pos and character:FindFirstChild("HumanoidRootPart") then
-            character.HumanoidRootPart.CFrame = CFrame.new(pos)
-        else
-            local target = FindPlayer(place)
-            if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
-                character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
+    coroutine.wrap(function()
+        if cmd == "tp" and args[2] then
+            local destino = args[2]:lower()
+            local pos = teleportAliases[destino]
+            if pos then
+                hrp.CFrame = CFrame.new(pos)
+            else
+                local alvo = FindPlayer(destino)
+                if alvo and alvo.Character and alvo.Character:FindFirstChild("HumanoidRootPart") then
+                    hrp.CFrame = alvo.Character.HumanoidRootPart.CFrame
+                end
             end
-        end
 
-    elseif cmd == "tpsofa" then
-        if character:FindFirstChild("HumanoidRootPart") then
-            character.HumanoidRootPart.CFrame = CFrame.new(-83, 21, -131)
+        elseif cmd == "tpsofa" then
+            hrp.CFrame = CFrame.new(-83, 21, -131)
             humanoid:ChangeState(Enum.HumanoidStateType.Seated)
-        end
 
-    elseif cmd == "speed" and args[2] then
-        humanoid.WalkSpeed = tonumber(args[2]) or 16
+        elseif cmd == "speed" and args[2] then
+            humanoid.WalkSpeed = tonumber(args[2]) or 16
 
-    elseif cmd == "resetspeed" then
-        humanoid.WalkSpeed = 16
+        elseif cmd == "resetspeed" then
+            humanoid.WalkSpeed = 16
 
-    elseif cmd == "jumppower" and args[2] then
-        humanoid.JumpPower = tonumber(args[2]) or 50
+        elseif cmd == "jumppower" and args[2] then
+            humanoid.JumpPower = tonumber(args[2]) or 50
 
-    elseif cmd == "resetjp" then
-        humanoid.JumpPower = 50
+        elseif cmd == "resetjp" then
+            humanoid.JumpPower = 50
 
-    elseif cmd == "speedsupreme" then
-        local func = LoadScript("https://raw.githubusercontent.com/Shadow6698/Speed-2/main/Main.txt")
-        if func then func() end
+        elseif cmd == "speedsupreme" then
+            local f = loadedScripts.speedsupreme
+            if f then f() end
 
-    elseif cmd == "view" and args[2] then
-        local target = FindPlayer(args[2])
-        if target and target.Character then
-            local hum = target.Character:FindFirstChildOfClass("Humanoid")
-            if hum then
-                Camera.CameraSubject = hum
+        elseif cmd == "view" and args[2] then
+            local target = FindPlayer(args[2])
+            if target and target.Character then
+                local hum = target.Character:FindFirstChildOfClass("Humanoid")
+                if hum then
+                    Camera.CameraSubject = hum
+                end
             end
+
+        elseif cmd == "unview" then
+            Camera.CameraSubject = humanoid
+
+        elseif cmd == "xray" then
+            enableXray()
+
+        elseif cmd == "unxray" then
+            disableXray()
+
+        elseif cmd == "coolkid" then
+            local f = loadedScripts.coolkid
+            if f then f() end
+
+        elseif cmd == "portalgun" then
+            local f = loadedScripts.portalgun
+            if f then f() end
+
+        elseif cmd == "void" then
+            local f = loadedScripts.void
+            if f then f() end
+
+        elseif cmd == "gravitygun" then
+            local f = loadedScripts.gravitygun
+            if f then f() end
+
+        elseif cmd == "angelhub" then
+            local f = loadedScripts.angelhub
+            if f then f() end
+
+        elseif cmd == "lanterna" then
+            local f = loadedScripts.lanterna
+            if f then f() end
+
+        elseif cmd == "cmd1" then
+            local f = loadedScripts.cmd1
+            if f then f() end
+
+        elseif cmd == "hub1" then
+            local f = loadedScripts.hub1
+            if f then f() end
+
+        elseif cmd == "emotes" then
+            local f = loadedScripts.emotes
+            if f then f() end
+
+        elseif cmd == "gigante" then
+            local f = loadedScripts.gigante
+            if f then f() end
+
+        elseif cmd == "cmds" then
+            OpenCmdGui()
         end
-
-    elseif cmd == "unview" then
-        Camera.CameraSubject = humanoid
-
-    elseif cmd == "xray" then
-        enableXray()
-
-    elseif cmd == "unxray" then
-        disableXray()
-
-    elseif cmd == "coolkid" then
-        local func = LoadScript("https://raw.githubusercontent.com/Shadow6698/COOLKIDHUB/main/Main.txt")
-        if func then func() end
-
-    elseif cmd == "portalgun" then
-        local func = LoadScript("https://raw.githubusercontent.com/Shadow6698/Portal-gun-/main/Main.txt")
-        if func then func() end
-
-    elseif cmd == "void" then
-        local func = LoadScript("https://raw.githubusercontent.com/Shadow6698/Void-fe/main/main.txt")
-        if func then func() end
-
-    elseif cmd == "gravitygun" then
-        local func = LoadScript("https://scriptblox.com/raw/Universal-Script-Telekinesis-12332")
-        if func then func() end
-
-    elseif cmd == "angelhub" then
-        local func = LoadScript("https://raw.githubusercontent.com/Shadow6698/angelhub/main/Main.txt")
-        if func then func() end
-
-    elseif cmd == "lanterna" then
-        local func = LoadScript("https://rawscripts.net/raw/Universal-Script-Flashlight-Script-40768")
-        if func then func() end
-
-    elseif cmd == "cmd1" then
-        local func = LoadScript("https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua")
-        if func then func() end
-
-    elseif cmd == "hub1" then
-        local func = LoadScript("https://raw.githubusercontent.com/Venom-devX/ChaosHub/main/loader.lua")
-        if func then func() end
-
-    elseif cmd == "emotes" then
-        local func = LoadScript("https://scriptblox.com/raw/Brookhaven-RP-all-emotes-6849")
-        if func then func() end
-
-    elseif cmd == "gigante" then
-        local func = LoadScript("https://rawscripts.net/raw/Brookhaven-RP-FE-BIG-AVATAR-43381")
-        if func then func() end
-
-    elseif cmd == "cmds" then
-        OpenCmdGui()
-    end
+    end)()
 end)
+
+print("Script de comandos carregado e ativo!")
