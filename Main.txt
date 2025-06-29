@@ -83,7 +83,7 @@ local comandos = {
     {"Invocar Gênio", "https://raw.githubusercontent.com/Shadow6698/spawngenio/main/Main.txt"},
 }
 
--- 📦 Combos em scriptsNovos aceitando funções para combos
+-- 📦 Combos em scriptsNovos (funções para combos) + links diretos para scripts únicos
 local scriptsNovos = {
     {
         "Combo Universal",
@@ -113,17 +113,14 @@ local scriptsNovos = {
     },
     {
         "Virar Bola KKJ",
-        function()
-            loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fe-ball-rolL-9835"))()
-        end
+        "https://rawscripts.net/raw/Universal-Script-Fe-ball-rolL-9835"
     },
     {
         "Modo Gigante",
-        function()
-            loadstring(game:HttpGet("https://rawscripts.net/raw/Brookhaven-RP-FE-BIG-AVATAR-43381"))()
-        end
+        "https://rawscripts.net/raw/Brookhaven-RP-FE-BIG-AVATAR-43381"
     }
 }
+
 
 local outros = {
     {"Angel Executor", "https://raw.githubusercontent.com/Shadow6698/Executor-script/main/Main.txt"},
