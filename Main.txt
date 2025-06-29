@@ -67,7 +67,7 @@ local scripts = {
     {"Salvatore", "https://raw.githubusercontent.com/RFR-R1CH4RD/Loader/main/Salvatore.lua"},
     {"Draw FE", "https://raw.githubusercontent.com/Affexter/Programs/refs/heads/main/scripts/tooldrawFE.lua"},
     {"Multiplicar Tools", "https://raw.githubusercontent.com/kigredns/NeonDuplicator/refs/heads/main/Script.lua"},
-    {"Chaos Hub", "https://raw.githubusercontent.com/Luscaa22/Calabocaa/refs/heads/main/ChaosHub"},
+    {"Chaos Hub", "https://raw.githubusercontent.com/Venom-devX/ChaosHub/main/loader.lua"},
     {"Rebobination", "https://raw.githubusercontent.com/Shadow6698/rebobination/main/Main.txt"},
 }
 
