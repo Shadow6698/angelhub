@@ -107,13 +107,14 @@ local outros = {
 local brookhavenScripts = {
     {"Gumball Hub", "https://raw.githubusercontent.com/JaozinScripts/Gumball-Hub/refs/heads/main/GumballHubRetorn2.1.1.1.lua"},
     {"Sander X", "https://raw.githubusercontent.com/sXPiterXs1111/Sanderxv3.30/main/sanderx3.30"},
-    {"Chaos Hub", "https://raw.githubusercontent.com/Luscaa22/Calabocaa/refs/heads/main/ChaosHub"},
+    {"Chaos Hub", "https://raw.githubusercontent.com/Venom-devX/ChaosHub/main/loader.lua"},
     {"Rael Hub", "https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/main.txt"},
     {"Shadow Hub", "https://raw.githubusercontent.com/realgengar/scripts/refs/heads/main/Gui%20Version.Lua"},
-    {"Speed Wave", "https://rawscripts.net/raw/Brookhaven-RP-SPEED-WAVE-English-28849"},
+    {"Speed Wave", "https://raw.githubusercontent.com/Shadow6698/vheiclespeed/main/Main.txt"},
     {"Duplicator Carros", "https://raw.githubusercontent.com/kigredns/Flame-Object/refs/heads/main/script.lua"},
     {"Coquette Hub", "https://rawscripts.net/raw/Brookhaven-RP-Coquette-Hub-41921"},
 }
+
 
 local aliciaScripts = {
     {"Ioio da Ladybug", "https://raw.githubusercontent.com/Shadow6698/ladybug/main/Main.txt"},
